@@ -1,22 +1,27 @@
 /* Design System & Global Styles */
 :root {
-  /* Color Palette - Premium & Trustworthy */
-  --primary-color: #0F172A;
-  /* Dark Navy */
-  --primary-light: #1E293B;
-  --accent-color: #06B6D4;
-  /* Cyan/Teal for "Well" / Tech feel */
-  --accent-hover: #0891B2;
-  --secondary-color: #6366F1;
-  /* Indigo/Purple for "Vision" */
-  --success-color: #10B981;
-  /* Green for "Mission/Safety" */
+  /* 로고 기반 컬러 팔레트 */
+  --primary-color: #0F4571;
+  /* 로고의 메인 네이비 블루 (신뢰, 전문성) */
+  --primary-light: #1A5A8A;
+  /* 밝은 네이비 */
+
+  --accent-color: #D9232A;
+  /* 로고의 레드 (포인트, 활력) */
+  --accent-hover: #B91C22;
+  /* 호버 시 약간 어두운 레드 */
+
+  --secondary-color: #0F4571;
+  /* 보조 색상도 네이비 계열로 통일 */
+  --success-color: #D9232A;
+  /* 강조가 필요한 곳에 레드 사용 */
 
   --bg-color: #FFFFFF;
   --bg-light: #F8FAFC;
   --text-color: #334155;
   --text-light: #64748B;
-  --text-heading: #0F172A;
+  --text-heading: #0F4571;
+  /* 헤딩 텍스트도 네이비로 변경 */
 
   --white: #FFFFFF;
   --glass-bg: rgba(255, 255, 255, 0.7);
@@ -25,7 +30,6 @@
   /* Typography */
   --font-heading: 'Outfit', sans-serif;
   --font-body: 'Noto Sans KR', sans-serif;
-  /* For Korean text support */
 
   /* Spacing & Layout */
   --container-width: 1200px;
@@ -80,10 +84,16 @@ img {
 }
 
 .text-gradient {
-  background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
+  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.text-accent {
+  color: var(--accent-color);
+  font-weight: 800;
 }
 
 /* Buttons */
@@ -106,15 +116,28 @@ img {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
   color: var(--white);
   border: none;
-  box-shadow: 0 4px 14px rgba(6, 182, 212, 0.3);
+  box-shadow: 0 4px 14px rgba(15, 69, 113, 0.3);
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(6, 182, 212, 0.4);
+  box-shadow: 0 6px 20px rgba(15, 69, 113, 0.4);
+}
+
+/* Header Contact Button Only */
+.nav-list .btn-primary {
+  background: var(--accent-color);
+  color: var(--white) !important;
+  box-shadow: 0 4px 14px rgba(217, 35, 42, 0.2);
+}
+
+.nav-list .btn-primary:hover {
+  transform: none;
+  background: var(--accent-hover);
+  box-shadow: 0 4px 14px rgba(217, 35, 42, 0.2);
 }
 
 .btn-outline {
@@ -145,8 +168,10 @@ img {
 }
 
 .header-container {
-  width: 100%;
-  /* Ensure container takes full width inside flex */
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 0 60px !important;
+  margin: 0 !important;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -158,6 +183,14 @@ img {
   font-weight: 800;
   color: var(--text-heading);
   letter-spacing: -0.02em;
+  display: flex;
+  align-items: center;
+}
+
+.logo-img {
+  height: 130px;
+  width: auto;
+  display: block;
 }
 
 .logo-accent {
@@ -174,10 +207,20 @@ img {
   font-weight: 500;
   font-size: 0.95rem;
   color: var(--text-heading);
+  padding: 8px 16px;
+  border-radius: 50px;
+  transition: var(--transition);
 }
 
 .nav-list a:hover {
   color: var(--accent-color);
+}
+
+.nav-list a.active {
+  background: var(--accent-color);
+  color: var(--white) !important;
+  font-weight: 600;
+  box-shadow: 0 4px 10px rgba(217, 35, 42, 0.2);
 }
 
 .mobile-menu-btn {
@@ -411,6 +454,13 @@ img {
   gap: 20px;
   justify-content: center;
   width: 100%;
+}
+
+.org-main-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
 }
 
 .org-departments {

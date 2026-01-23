@@ -1,10 +1,28 @@
-import './style.css'
+import './assets/style.css'
+import { Header } from './components/Header'
+import { Footer } from './components/Footer'
+import { initNavigation, initMobileMenu } from './utils/navigation'
 
-// Main Application Logic
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('Research Well Application Started');
+  // Inject Header and Footer
+  const app = document.getElementById('app');
 
-  // Mobile Menu Toggle (Basic Implementation)
-  const menuBtn = document.querySelector('.mobile-menu-btn');
-  // TODO: Add menu logic
+  // Create header and footer containers if they don't exist as placeholders
+  // But for cleaner HTML, we'll just prepend/append to the app div or find specific IDs
+  const headerPlaceholder = document.getElementById('header-root');
+  const footerPlaceholder = document.getElementById('footer-root');
+
+  if (headerPlaceholder) {
+    headerPlaceholder.innerHTML = Header();
+  }
+
+  if (footerPlaceholder) {
+    footerPlaceholder.innerHTML = Footer();
+  }
+
+  // Initialize logic
+  initNavigation();
+  initMobileMenu();
+
+  console.log('Research Well Application Initialized');
 });
