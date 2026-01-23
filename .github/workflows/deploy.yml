@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - gh-pages  # 현재 gh-pages 브랜치에 소스를 올리신다고 하셨으므로 이를 트리거로 설정
+      - main  # 이제 main 브랜치에 소스를 올리시므로 이를 트리거로 설정
 
 permissions:
   contents: write
