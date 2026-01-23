@@ -1,15 +1,23 @@
 export const initNavigation = () => {
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-list a');
+    const isReportsPage = window.location.pathname.includes('reports.html');
 
-    // reports.html이 포함되지 않았을 때만 스크롤 감지 로직 실행
-    const isMainPage = !window.location.pathname.includes('reports.html');
-
-    if (!isMainPage) return;
+    // 보고서 페이지에서는 스크롤에 따른 active 변경 로직을 실행하지 않음 (오직 Reports에 고정)
+    if (isReportsPage) {
+        navLinks.forEach(link => {
+            if (link.getAttribute('href').includes('reports.html')) {
+                link.classList.add('active');
+            } else {
+                link.classList.remove('active');
+            }
+        });
+        return;
+    }
 
     function updateActiveLink() {
         let current = '';
-        const scrollPos = window.scrollY + 120; // 헤더 높이를 고려한 오프셋
+        const scrollPos = window.scrollY + 120;
 
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
@@ -22,29 +30,29 @@ export const initNavigation = () => {
         navLinks.forEach(link => {
             link.classList.remove('active');
             const href = link.getAttribute('href');
-            // href가 #home, #mission 등 ID와 일치하는지 확인
-            if (current && href.includes(`#${current}`)) {
+
+            // 해시 링크인 경우에만 스크롤 상태 반영
+            if (current && href === `#${current}`) {
                 link.classList.add('active');
             }
         });
 
-        // 아무것도 활성화되지 않았고 화면이 맨 위라면 Home 활성화
-        if (!current && window.scrollY < 100) {
-            const homeLink = document.querySelector('.nav-list a[href="#home"]');
+        // 최상단일 때 Home 활성화
+        if (window.scrollY < 100) {
+            const homeLink = document.querySelector('.nav-list a[href="index.html"]');
             if (homeLink) homeLink.classList.add('active');
         }
     }
 
     window.addEventListener('scroll', updateActiveLink);
-    // 페이지 로드 시 즉시 한 번 실행
-    setTimeout(updateActiveLink, 100);
+    updateActiveLink();
 };
 
 export const initMobileMenu = () => {
     const menuBtn = document.querySelector('.mobile-menu-btn');
     if (menuBtn) {
         menuBtn.addEventListener('click', () => {
-            console.log('Mobile menu active');
+            // 모바일 메뉴 처리 로직 (필요 시)
         });
     }
 };

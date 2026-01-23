@@ -1,24 +1,28 @@
 export const Header = () => {
-  // 현재 페이지가 reports.html인지 확인
+  // Vite가 설정된 base 경로를 자동으로 가져옵니다 (e.g., '/ResearchWell/' 또는 '/')
+  const base = import.meta.env.BASE_URL;
   const isReportsPage = window.location.pathname.includes('reports.html');
 
-  // Vite의 base 설정이나 현재 환경을 고려한 로고 경로
-  // '/images/logo.png' 대신 상대 경로를 사용하여 어디서든 깨지지 않게 함
-  const logoPath = 'images/logo.png';
+  // 경로를 깔끔하게 합쳐주는 헬퍼 함수
+  const getPath = (path) => `${base}${path}`.replace(/\/+/g, '/');
+
+  const logoPath = getPath('images/logo.png');
+  const homeUrl = getPath('index.html');
+  const reportsUrl = getPath('reports.html');
 
   return `
     <header class="header">
       <div class="container header-container">
-        <a href="./" class="logo">
+        <a href="${homeUrl}" class="logo">
           <img src="${logoPath}" alt="Research Well Logo" class="logo-img">
         </a>
         <nav class="nav">
           <ul class="nav-list">
-            <li><a href="${isReportsPage ? './index.html' : '#home'}" class="${!isReportsPage ? 'active' : ''}">Home</a></li>
-            <li><a href="${isReportsPage ? './index.html#mission' : '#mission'}">Mission</a></li>
-            <li><a href="${isReportsPage ? './index.html#vision' : '#vision'}">Vision</a></li>
-            <li><a href="${isReportsPage ? './index.html#service' : '#service'}">Business Areas</a></li>
-            <li><a href="./reports.html" target="_blank" class="${isReportsPage ? 'active' : ''}">Research Reports</a></li>
+            <li><a href="${isReportsPage ? homeUrl : '#home'}" class="${!isReportsPage ? 'active' : ''}">Home</a></li>
+            <li><a href="${isReportsPage ? homeUrl + '#mission' : '#mission'}">Mission</a></li>
+            <li><a href="${isReportsPage ? homeUrl + '#vision' : '#vision'}">Vision</a></li>
+            <li><a href="${isReportsPage ? homeUrl + '#service' : '#service'}">Business Areas</a></li>
+            <li><a href="${reportsUrl}" class="${isReportsPage ? 'active' : ''}">Research Reports</a></li>
           </ul>
         </nav>
         <button class="mobile-menu-btn" aria-label="Toggle Menu">
