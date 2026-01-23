@@ -3,10 +3,12 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main  # 이제 main 브랜치에 소스를 올리시므로 이를 트리거로 설정
+      - main
 
 permissions:
   contents: write
+  pages: write      # 페이지 권한 추가
+  id-token: write   # 인증 권한 추가
 
 jobs:
   build-and-deploy:
@@ -16,7 +18,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Set up Node.js
-        uses: actions/checkout@v4
+        uses: actions/setup-node@v4  # 이 부분이 오타였습니다!
         with:
           node-version: 20
 
@@ -26,9 +28,14 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@v4
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          folder: dist # 빌드 결과물이 저장되는 폴더
-          branch: gh-pages # 결과물을 다시 gh-pages 브랜치에 덮어씌움 (빌드된 정적 파일만 남게 됨)
-          clean: true
+          path: './dist' # 빌드된 결과물이 있는 폴더
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
