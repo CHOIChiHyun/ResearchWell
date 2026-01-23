@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/ResearchWell/vite.svg" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Research Well</title>
   <!-- Google Fonts: Outfit (English Headings), Noto Sans KR (Korean Body), Inter (UI) -->
@@ -12,33 +12,11 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+KR:wght@300;400;500;700&family=Outfit:wght@500;700;800&display=swap"
     rel="stylesheet">
-  <script type="module" crossorigin src="/ResearchWell/assets/index-DThNSkIB.js"></script>
-  <link rel="stylesheet" crossorigin href="/ResearchWell/assets/index-P_PJ6eM1.css">
 </head>
 
 <body>
   <div id="app">
-    <!-- Header will be injected here or statically built -->
-    <header class="header">
-      <div class="container header-container">
-        <a href="#" class="logo">Research<span class="logo-accent">Well</span></a>
-        <nav class="nav">
-          <ul class="nav-list">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#mission">Mission</a></li>
-            <li><a href="#vision">Vision</a></li>
-            <li><a href="#service">Service</a></li>
-            <li><a href="#contact" class="btn btn-primary btn-sm">Contact</a></li>
-          </ul>
-        </nav>
-        <button class="mobile-menu-btn" aria-label="Toggle Menu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-      </div>
-    </header>
+    <div id="header-root"></div>
 
     <main>
       <!-- Hero Section -->
@@ -61,70 +39,7 @@
         </div>
       </section>
 
-      <!-- About Section -->
-      <section id="about" class="section">
-        <div class="container">
-          <div class="section-header">
-            <h2 class="section-title">Company Overview</h2>
-            <p class="section-subtitle">리서치웰 현황 및 조직 구성</p>
-          </div>
 
-          <div class="about-grid">
-            <div class="about-card info-card">
-              <h3>일반 현황</h3>
-              <ul class="info-list">
-                <li>
-                  <span class="label">기관명</span>
-                  <span class="value">리서치웰 (Research Well)</span>
-                </li>
-                <li>
-                  <span class="label">대표자</span>
-                  <span class="value">김 욱</span>
-                </li>
-                <li>
-                  <span class="label">사업분야</span>
-                  <span class="value">행정기관, 사회/정치 여론조사, 공표보도 조사, 마케팅 조사 등</span>
-                </li>
-                <li>
-                  <span class="label">소재지</span>
-                  <span class="value">대구시 달서구 월배로 347, 3층</span>
-                </li>
-                <li>
-                  <span class="label">서울사무소</span>
-                  <span class="value">서울시 영등포구 양평로 22길 21 선유도코오롱디지털타워 612호</span>
-                </li>
-                <li>
-                  <span class="label">전화번호</span>
-                  <span class="value">053-657-6288 / 010-6688-9108</span>
-                </li>
-              </ul>
-            </div>
-
-            <div class="about-card org-card">
-              <h3>조직 구성</h3>
-              <div class="org-chart">
-                <div class="org-level level-1">
-                  <div class="org-node CEO">대표이사</div>
-                </div>
-                <div class="org-level level-2">
-                  <div class="org-node">이사회</div>
-                  <div class="org-node">자문교수위원</div>
-                </div>
-                <div class="org-main-group">
-                  <div class="org-node branch">대구 사무소 / 서울 출장소</div>
-                  <div class="org-departments">
-                    <div class="dept-node">사회여론조사팀</div>
-                    <div class="dept-node">행정/공공조사팀</div>
-                    <div class="dept-node">정치조사팀</div>
-                    <div class="dept-node">실사/전산팀</div>
-                    <div class="dept-node">경영지원실</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       <!-- Mission Section -->
       <section id="mission" class="section mission-section">
@@ -192,7 +107,7 @@
       <!-- Services Section -->
       <section id="service" class="section service-section">
         <div class="container">
-          <div class="section-header">
+          <div class="section-header text-center">
             <h2 class="section-title">Business Areas</h2>
             <p class="section-subtitle">Research Well은 마케팅 조사와 공공 사회 조사에 대한 Total Service를 제공합니다.</p>
           </div>
@@ -230,18 +145,9 @@
       </section>
     </main>
 
-    <footer class="footer">
-      <div class="container footer-content">
-        <div class="footer-col">
-          <h3>Research Well</h3>
-          <p>대구시 달서구 월배로 347, 3층</p>
-        </div>
-        <div class="footer-col">
-          <p>&copy; 2026 Research Well. All rights reserved.</p>
-        </div>
-      </div>
-    </footer>
+    <div id="footer-root"></div>
   </div>
+  <script type="module" src="/src/main.js"></script>
 </body>
 
 </html>
