@@ -26,9 +26,27 @@
                         <p class="section-subtitle">최근 여론조사 결과 보고서를 확인하실 수 있습니다.</p>
                     </div>
 
-                    <div
-                        style="padding: 100px 0; text-align: center; background: var(--bg-light); border-radius: 20px;">
-                        <p style="color: var(--text-light);">현재 등록된 보고서가 없습니다. 곧 업데이트될 예정입니다.</p>
+                    <div class="reports-grid"
+                        style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; margin-top: 40px;">
+                        <!-- Report Card -->
+                        <div class="report-card"
+                            style="background: white; border-radius: 16px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: transform 0.3s ease; border: 1px solid var(--border-color);">
+                            <div class="report-tag"
+                                style="display: inline-block; padding: 4px 12px; border-radius: 20px; background: rgba(var(--primary-rgb), 0.1); color: var(--primary-color); font-size: 13px; font-weight: 600; margin-bottom: 15px;">
+                                여론조사</div>
+                            <h3 style="font-size: 20px; margin-bottom: 12px; color: var(--text-dark);">[테스트 데이터] 2024년
+                                정기 여론조사 결과 보고서</h3>
+                            <p
+                                style="color: var(--text-light); font-size: 15px; margin-bottom: 25px; line-height: 1.6;">
+                                리서치웰에서 진행한 2024년 정기 여론조사 상세 결과 보고서입니다.</p>
+                            <div style="display: flex; align-items: center; justify-content: space-between;">
+                                <span style="font-size: 13px; color: var(--text-muted);">2024.01.26</span>
+                                <a href="/reports/test_pdf.pdf" download="ResearchWell_2024_Report.pdf"
+                                    class="btn btn-primary"
+                                    style="padding: 8px 20px; font-size: 14px; text-decoration: none; border-radius: 8px; background: #2b4b7c; color: white;">다운로드
+                                    (PDF)</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
