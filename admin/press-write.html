@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/favicon.png?v=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>글 작성 - Research Well Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+KR:wght@300;400;500;700&family=Outfit:wght@500;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../src/assets/style.css">
+    <link rel="stylesheet" href="../src/assets/admin.css">
+</head>
+
+<body>
+    <div class="admin-wrapper">
+        <!-- Admin Header -->
+        <header class="admin-header">
+            <div class="admin-logo">
+                <img src="/images/mini_logo.png" alt="Research Well">
+                <span>Research Well</span>
+                <span class="admin-logo-badge">ADMIN</span>
+            </div>
+
+            <nav class="admin-nav">
+                <a href="/admin/">게시글 관리</a>
+                <a href="/admin/press-write.html" class="active">새 글 작성</a>
+                <a href="/" target="_blank">사이트 보기</a>
+            </nav>
+
+            <div class="admin-user">
+                <span id="user-email" class="admin-user-name"></span>
+                <button id="logout-btn" class="btn-logout">로그아웃</button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="admin-container">
+            <div class="write-card">
+                <div class="write-header">
+                    <h1 id="page-title">새 글 작성</h1>
+                </div>
+
+                <form id="press-form">
+                    <div class="form-group">
+                        <label class="form-label" for="title">제목 *</label>
+                        <input type="text" id="title" class="form-input" placeholder="게시글 제목을 입력하세요" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="category">카테고리 *</label>
+                            <select id="category" class="form-select" required>
+                                <option value="">카테고리 선택</option>
+                                <option value="보도자료">보도자료</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="link">뉴스 기사 링크</label>
+                            <input type="url" id="link" class="form-input" placeholder="https://example.com/news/...">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="content">내용</label>
+                        <textarea id="content" class="form-textarea" placeholder="게시글 내용을 입력하세요 (선택사항)" rows="6"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-checkbox-group">
+                            <input type="checkbox" id="isPublished" class="form-checkbox" checked>
+                            <label for="isPublished" class="form-label" style="margin-bottom: 0;">공개 여부</label>
+                        </div>
+                        <p style="color: var(--text-light); font-size: 0.85rem; margin-top: 8px;">
+                            체크하면 즉시 공개됩니다. 체크 해제 시 비공개로 저장됩니다.
+                        </p>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" id="save-btn" class="btn-save">저장하기</button>
+                        <button type="button" id="cancel-btn" class="btn-cancel">취소</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Toast -->
+        <div id="toast" class="toast"></div>
+    </div>
+
+    <script type="module" src="../src/pages/admin/press-editor.js"></script>
+</body>
+
+</html>

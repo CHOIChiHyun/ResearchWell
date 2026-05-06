@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/favicon.png?v=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>관리자 - Research Well</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+KR:wght@300;400;500;700&family=Outfit:wght@500;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../src/assets/style.css">
+    <link rel="stylesheet" href="../src/assets/admin.css">
+</head>
+
+<body>
+    <div class="admin-wrapper">
+        <!-- Admin Header -->
+        <header class="admin-header">
+            <div class="admin-logo">
+                <img src="/images/mini_logo.png" alt="Research Well">
+                <span>Research Well</span>
+                <span class="admin-logo-badge">ADMIN</span>
+            </div>
+
+            <nav class="admin-nav">
+                <a href="/admin/" class="active">게시글 관리</a>
+                <a href="/admin/press-write.html">새 글 작성</a>
+                <a href="/" target="_blank">사이트 보기</a>
+            </nav>
+
+            <div class="admin-user">
+                <span id="user-email" class="admin-user-name"></span>
+                <button id="logout-btn" class="btn-logout">로그아웃</button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="admin-container">
+            <!-- Dashboard Header -->
+            <div class="dashboard-header">
+                <h1 class="dashboard-title">언론 공표 자료 관리</h1>
+                <a href="/admin/press-write.html" class="btn btn-primary">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="margin-right: 8px;">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                    </svg>
+                    새 글 작성
+                </a>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="dashboard-stats">
+                <div class="stat-card">
+                    <h3>전체 게시글</h3>
+                    <div id="stat-total" class="stat-value">-</div>
+                </div>
+                <div class="stat-card">
+                    <h3>공개 게시글</h3>
+                    <div id="stat-published" class="stat-value">-</div>
+                </div>
+                <div class="stat-card">
+                    <h3>비공개 게시글</h3>
+                    <div id="stat-draft" class="stat-value">-</div>
+                </div>
+            </div>
+
+            <!-- Press List Table -->
+            <div class="press-table-card">
+                <div class="press-table-header">
+                    <h2>게시글 목록</h2>
+                </div>
+
+                <div id="loading" class="loading">
+                    <div class="spinner"></div>
+                </div>
+
+                <div id="empty-state" class="empty-state" style="display: none;">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                    <h3>등록된 게시글이 없습니다</h3>
+                    <p>새 글을 작성하여 언론 공표 자료를 등록해보세요.</p>
+                </div>
+
+                <table id="press-table" class="press-table" style="display: none;">
+                    <thead>
+                        <tr>
+                            <th>제목</th>
+                            <th>카테고리</th>
+                            <th>상태</th>
+                            <th>작성일</th>
+                            <th>관리</th>
+                        </tr>
+                    </thead>
+                    <tbody id="press-list">
+                        <!-- Dynamic content -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Delete Confirm Modal -->
+        <div id="delete-modal" class="modal-overlay">
+            <div class="modal">
+                <h3>게시글 삭제</h3>
+                <p>정말 이 게시글을 삭제하시겠습니까?<br>삭제된 게시글은 복구할 수 없습니다.</p>
+                <div class="modal-actions">
+                    <button id="cancel-delete" class="btn-cancel">취소</button>
+                    <button id="confirm-delete" class="btn-save" style="background: var(--accent-color);">삭제</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Toast -->
+        <div id="toast" class="toast"></div>
+    </div>
+
+    <script type="module" src="../src/pages/admin/dashboard.js"></script>
+</body>
+
+</html>
