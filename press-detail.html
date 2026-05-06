@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/favicon.png?v=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>언론 공표 - Research Well</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Sans+KR:wght@300;400;500;700&family=Outfit:wght@500;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        /* Press Detail Specific Styles */
+        .press-detail-section {
+            padding-top: 50px;
+        }
+
+        .press-detail-card {
+            background: white;
+            border-radius: 20px;
+            padding: 48px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .press-detail-header {
+            margin-bottom: 32px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .press-detail-tag {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .press-detail-tag.poll {
+            background: rgba(15, 69, 113, 0.1);
+            color: var(--primary-color);
+        }
+
+        .press-detail-tag.press {
+            background: rgba(217, 35, 42, 0.1);
+            color: var(--accent-color);
+        }
+
+        .press-detail-title {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            color: var(--text-heading);
+            line-height: 1.4;
+            margin-bottom: 16px;
+        }
+
+        .press-detail-meta {
+            display: flex;
+            gap: 24px;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .press-detail-meta span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .press-detail-meta svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .press-detail-content {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--text-color);
+            white-space: pre-wrap;
+            margin-bottom: 32px;
+        }
+
+        .press-detail-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            color: white;
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .press-detail-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(15, 69, 113, 0.3);
+        }
+
+        .press-detail-link svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .press-detail-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-light);
+            font-weight: 500;
+            margin-bottom: 24px;
+            transition: color 0.2s ease;
+        }
+
+        .press-detail-back:hover {
+            color: var(--primary-color);
+        }
+
+        .press-detail-back svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .press-loading {
+            display: flex;
+            justify-content: center;
+            padding: 100px;
+        }
+
+        .press-loading .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid #f0f0f0;
+            border-top-color: var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .press-not-found {
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .press-not-found h2 {
+            font-size: 1.5rem;
+            color: var(--text-heading);
+            margin-bottom: 12px;
+        }
+
+        .press-not-found p {
+            color: var(--text-light);
+            margin-bottom: 24px;
+        }
+
+        @media (max-width: 768px) {
+            .press-detail-card {
+                padding: 24px;
+                border-radius: 16px;
+            }
+
+            .press-detail-title {
+                font-size: 1.5rem;
+            }
+
+            .press-detail-meta {
+                flex-direction: column;
+                gap: 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div id="header-root"></div>
+
+        <main>
+            <section class="section press-detail-section">
+                <div class="container">
+                    <a href="/press.html" class="press-detail-back">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7">
+                            </path>
+                        </svg>
+                        목록으로 돌아가기
+                    </a>
+
+                    <!-- Loading -->
+                    <div id="loading" class="press-loading">
+                        <div class="spinner"></div>
+                    </div>
+
+                    <!-- Not Found -->
+                    <div id="not-found" class="press-not-found" style="display: none;">
+                        <h2>게시글을 찾을 수 없습니다</h2>
+                        <p>요청하신 게시글이 존재하지 않거나 삭제되었습니다.</p>
+                        <a href="/press.html" class="btn btn-primary">목록으로 돌아가기</a>
+                    </div>
+
+                    <!-- Content -->
+                    <div id="press-content" class="press-detail-card" style="display: none;">
+                        <div class="press-detail-header">
+                            <span id="detail-tag" class="press-detail-tag"></span>
+                            <h1 id="detail-title" class="press-detail-title"></h1>
+                            <div class="press-detail-meta">
+                                <span>
+                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
+                                        </path>
+                                    </svg>
+                                    <span id="detail-date"></span>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div id="detail-body" class="press-detail-content"></div>
+
+                        <div id="detail-link-wrapper"></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <div id="footer-root"></div>
+    </div>
+
+    <script type="module" src="./src/main.js"></script>
+    <script type="module" src="./src/pages/press-detail.js"></script>
+</body>
+
+</html>
