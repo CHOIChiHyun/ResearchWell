@@ -6,7 +6,13 @@ export default defineConfig({
         rollupOptions: {
             input: {
                 main: './index.html',
-                reports: './reports.html'
+                reports: './reports.html',
+                press: './press.html',
+                pressDetail: './press-detail.html',
+                adminLogin: './admin/login.html',
+                adminIndex: './admin/index.html',
+                adminPressList: './admin/press-list.html',
+                adminPressWrite: './admin/press-write.html'
             }
         }
     },

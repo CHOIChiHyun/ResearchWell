@@ -7,6 +7,7 @@ export const Footer = () => {
           <p>주소 : 대구광역시 달서구 월배로 347, 3층 / 대표 : 김 욱</p>
           <p>전화번호 : 053-657-6288 / 010-6688-9108</p>
           <p>E-mail : kw6258@gmail.com</p>
+          <p><a href="/admin/" style="color: rgba(255,255,255,0.4); font-size: 12px;">관리자</a></p>
         </div>
         <div class="footer-col">
           <p>&copy; ${new Date().getFullYear()} Research Well. All rights reserved.</p>
